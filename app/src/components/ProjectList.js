@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
 
-import Project from './Project';
+import { ProjectWithData } from './Project';
 
 
 export default class ProjectList extends React.Component {
@@ -16,7 +16,7 @@ export default class ProjectList extends React.Component {
           }
         }
       }
-      ${Project.fragments.ProjectFields}
+      ${ProjectWithData.fragments.ProjectFields}
     `
   };
 
@@ -24,7 +24,7 @@ export default class ProjectList extends React.Component {
 
     const projects = this.props.projects.map(project => {
       console.log(project);
-      return <Project {...project} key={project.uuid} />
+      return <ProjectWithData {...project} key={project.uuid} />
     });
 
     const style = {

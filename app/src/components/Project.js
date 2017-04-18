@@ -4,7 +4,7 @@ import { gql, graphql } from 'react-apollo';
 import ProjectList from './ProjectList';
 import ContributionList from './ContributionList';
 
-export default class Project extends React.Component {
+export class Project extends React.Component {
 
   static fragments = {
     ProjectFields: gql`
@@ -36,8 +36,16 @@ export default class Project extends React.Component {
 
     return (
       <div style={style}>
-        <h3>Title: {props.title}</h3>
-        <p>Summary: {props.summary}</p>
+        <button onClick={() => props.removeProject(props.uuid)}>Remove</button>
+        <h3>
+          Title: {this.props.title}
+          {/*<input value={this.props.title} onChange={this.handleChange.bind(this,'title')} />*/}
+        </h3>
+        <p>
+          Summary: {this.props.summary}
+          {/*<input value={this.props.summary} onChange={this.handleChange.bind(this,'summary')} />*/}
+        </p>
+
 
         { contributions ? <h4>Contributions</h4> : null }
         { contributions }
@@ -48,4 +56,21 @@ export default class Project extends React.Component {
     );
   }
 
+  // handleRemove() {
+  //   this.props.removeProject({variables: {projectId: this.props.project.id}})
+  //     .then(this.props.afterChange)
+  // }
+
 }
+
+const removeProject = gql`
+  mutation removeProject($projectId: ID!) {
+    removeProject(projectId: $projectId)
+  }
+`;
+
+export const ProjectWithData = graphql(removeProject, {
+  props: ({ mutate }) => ({
+    removeProject: (projectId) => mutate({variables: { projectId }})
+  })
+})(Project);

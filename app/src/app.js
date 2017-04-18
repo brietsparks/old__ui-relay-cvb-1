@@ -10,6 +10,7 @@ import { ProfileWithData } from './components/Profile';
 const uri = 'http://localhost:8000/graphql';
 
 const client = new ApolloClient({
+  dataIdFromObject: o => o.uuid,
   networkInterface: createNetworkInterface({
     uri: uri,
   }),
