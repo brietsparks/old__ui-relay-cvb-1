@@ -18,7 +18,7 @@ export default class ContributionList extends React.Component {
 
   render() {
     const contributions = this.props.contributions.map(contribution => {
-      console.log(contribution);
+      // console.log(contribution);
       return <Contribution {...contribution} key={contribution.uuid} />
     });
 

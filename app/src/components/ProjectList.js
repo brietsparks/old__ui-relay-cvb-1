@@ -23,7 +23,7 @@ export default class ProjectList extends React.Component {
   render() {
 
     const projects = this.props.projects.map(project => {
-      console.log(project);
+      // console.log(project);
       return <ProjectWithData {...project} key={project.uuid} />
     });
 

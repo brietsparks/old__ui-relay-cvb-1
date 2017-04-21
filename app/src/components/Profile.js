@@ -9,7 +9,7 @@ export class Profile extends React.Component {
 
     const data = this.props.data;
 
-    console.log(data);
+    // console.log(data);
 
     const projects = data.profile ?
       <ProjectList projects={data.profile.projects} /> : null;
